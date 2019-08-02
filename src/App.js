@@ -1,13 +1,14 @@
+// @ts-nocheck
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import TabPanel_ from './tabs/TabPanel_';
+import TabPanelDemo from './tabs/TabPanelDemo';
+import Carousel from './carousel/Carousel';
 
 const App = () => {
   return (
     <div className="App">
-      <TabPanel_ activeTabIdx={0} />
+      <Carousel />
     </div>
   );
 };

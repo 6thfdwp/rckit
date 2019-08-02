@@ -1,19 +1,18 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .App {
   text-align: center;
+  margin: 30px;
 }
 
 .App-logo {
@@ -47,8 +46,8 @@ code {
 }
 
 .tab-pan {
-  margin: 50px auto;;
-  width: 60%
+  margin: 50px auto;
+  width: 60%;
 }
 .tab-bar {
   list-style: none;
@@ -56,14 +55,73 @@ code {
 }
 .tab-bar .tab {
   /* color: #eee; */
-  color: rgba(35,37,51,.6);
+  color: rgba(35, 37, 51, 0.6);
   border-bottom: solid 1px #eee;
   padding: 10px 30px;
 }
+.tab-bar .tab:hover {
+  cursor: pointer;
+}
+
 .tab-bar .tab-active {
   color: #5468ff;
   border-bottom: solid 1px #5468ff;
 }
 .tab-content {
   padding: 30px;
+}
+
+.carousel {
+  /* display: flex; */
+  border: solid 3px #eee;
+  height: auto;
+  width: 60%;
+  position: relative;
+}
+.carousel-frame {
+  /* width: 300px; */
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* transform: translateX(-300px); */
+  transition: transform 0.6s ease-in-out;
+}
+.carousel-slide {
+  display: none;
+  float: left;
+  /* width: 300px; */
+  width: 100%;
+  height: 200px;
+}
+.carousel-slide.active {
+  display: block;
+}
+.carousel-slide::after {
+  display: block;
+  clear: both;
+}
+
+.carousel-indicator {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-left: 15%;
+  margin-right: 15%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+.carousel-indicator li {
+  flex: 0 1 auto;
+  height: 3px;
+  width: 30px;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: #fff;
+  opacity: 0.5;
+  /* background-clip: padding-box */
+  /* border-top: 10px solid transparent; */
+  /* border-bottom: 10px solid transparent; */
 }

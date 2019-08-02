@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, ReactChild, ReactNode } from 'react';
+import { type } from 'os';
 
 type TabProps = {
   title: string;
   active?: boolean;
+  children: ReactNode;
   onClick: (e: React.MouseEvent<HTMLLIElement>) => void;
 };
-
+type TabPanProps = {
+  activeTabIdx: number;
+  children: Array<ReactNode>;
+};
 type TabPanState = {
   activeTabIdx: number;
 };
@@ -22,18 +27,8 @@ const TabHeader: React.FC<TabProps> = ({ title, active, onClick }) => {
     </li>
   );
 };
-const Tab = {
-  Header: TabHeader
-};
+
 /**
- * <TabPanel activeIdx={}>
- *   <ul className='tab-bar'>
- *      <Tab></Tab>
- *   </ul>
- *   <TabContent>
- *     <TabItem>
- *   </TabContent>
- * </TabPanel>
  *
  * <TabPanel activeIdx={}>
  *   <Tab active title={} headerComp={}>
@@ -45,38 +40,34 @@ const Tab = {
  * </TabPanel>
  */
 
-const TabPanel: React.FC = props => {
-  const [state, setState] = useState({ activeTabIdx: 0 });
+const TabPanel: React.FC<TabPanProps> = ({ activeTabIdx, children }) => {
+  const [state, setState] = useState({ activeTabIdx });
   const changeTab = (toIdx: number) => {
     setState({ activeTabIdx: toIdx });
     // props.onTabChange();
   };
-  // const renderHeader = () => {
-  //   props.children && props.children.map(c => {});
-  // };
+  let selTab = null;
+  // children.forEach((tab, i) => {
+  //   if (i === state.activeTabIdx) {
+  //     selTab = tab.props.children;
+  //   }
+  // });
   return (
     <div className="tab-pan">
       <ul className="tab-bar">
-        {[1, 2, 3].map((n, i) => {
-          return (
-            <TabHeader
-              key={n}
-              active={i == state.activeTabIdx}
-              title={`Tab ${n.toString()}`}
-              onClick={() => changeTab(i)}
-            />
-          );
+        {children.map((tab, i) => {
+          // const { title } = tab.props;
+          // return (
+          //   <TabHeader
+          //     key={i}
+          //     title={title}
+          //     active={i === state.activeTabIdx}
+          //     onClick={() => changeTab(i)}
+          //   />
+          // );
         })}
       </ul>
-      <div className="tab-content tab-content_active">
-        <h2>Tab Content</h2>
-      </div>
-      <div className="tab-content tab-content_active">
-        <h2>Tab Content</h2>
-      </div>
-      <div className="tab-content tab-content_active">
-        <h2>Tab Content</h2>
-      </div>
+      {selTab}
     </div>
   );
 };
